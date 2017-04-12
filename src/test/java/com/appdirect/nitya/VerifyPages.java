@@ -71,15 +71,11 @@ public class VerifyPages implements VerifyPageInterface{
    }
 
 
-	public void endTest() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
     
-//     @AfterSuite(alwaysRun = true)
-//	 public void endTest(){
-//		wait.Wait();
-//     	driver.close(); 
-//    }
+    @AfterSuite(alwaysRun = true)
+	 public void endTest(){
+		wait.Wait();
+     	driver.close(); 
+    }
 }
