@@ -11,3 +11,8 @@ Mainly, there are 2 test classes in which one is used for success and failure of
 Here, exceptions are used to handle the upcoming exception.
 
 Also there is one spreadsheet which is giving the fair view of the project.
+
+How To Run:
+Go to src/test/java/com/appdirect/nitya/VerifyPages.java and run through TestNG
+Or
+Directly Run testng.xml file
