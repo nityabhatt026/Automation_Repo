@@ -88,6 +88,6 @@ public class VerifyPages implements VerifyPageInterface{
 	 public void endTest(){
 		 wait.Wait();
           	driver.close();
-		 Reporter.log("Browser Closed");
+		 Reporter.log("Browser Closed",true);
     }
 }
