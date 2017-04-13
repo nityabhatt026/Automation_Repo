@@ -24,58 +24,69 @@ public class VerifyPages implements VerifyPageInterface{
 	WebDriver driver;
 	WaitClass wait;
 	VerifySignupSuccess signupSuccess;
-	VerifyLinks verify;
 
     @BeforeTest(alwaysRun = true)
     public void openBrowser() throws IOException, MyNoSuchElementException, MyFileNotFoundException{
-    	BrowserFactory browserObj =new BrowserFactory(driver);
+    	        BrowserFactory browserObj =new BrowserFactory(driver);
 		driver=browserObj.startBrowser();
 		wait = new WaitClass(driver);
-	    wait.Wait();  
-	    homePage =new HomePage(driver);
+	        wait.Wait();  
+	        homePage =new HomePage(driver);
 	}
     
     
-    @Test(priority=1)
+    @Test
 	public void HomePageTest() throws  MyNoSuchElementException, MyFileNotFoundException, MyNullPointerException {
     	
-    	loginPage=homePage
-	   .homePageCheckerObject()
-	   .homePageStatus()
-	   .loginButtonStatus()
-	   .clickLogin();  
+    	       loginPage=homePage
+	      .homePageCheckerObject()
+	      .homePageStatus()
+	      .loginButtonStatus()
+	      .clickLogin();  
   }
 	
-   @Test(priority=2)
+   @Test
    public void LoginPageTest() throws  MyNoSuchElementException, MyNullPointerException, MyFileNotFoundException{
 	    
-	   signupPage=loginPage
-	   .loginPageCheckerObject()
-	   .LoginPageStatus()
-	   .signupButtonStatus()
-	   .clicksignup();  
+	        signupPage=loginPage
+	       .loginPageCheckerObject()
+	       .loginPageStatus()
+	       .signupButtonStatus()
+	       .clicksignup();  
   }
 
-    @Test(priority=3)
+    @Test
    public void SignUpPageTest() throws MyNoSuchElementException, MyNullPointerException, MyFileNotFoundException, MyIOException{
      
-    	verify=signupPage
-       .signupPageCheckerObject()
-       .signupPageStatus()
-       .signupTextBoxStatus()
-       .signupButtonStatus()
-       .signupID()
-	   .submitSignupId(); 
+    	         signupSuccess= signupPage
+                .signupPageCheckerObject()
+                .signupPageStatus()
+                .signupTextBoxStatus()
+                .signupButtonStatus()
+                .signupID()
+                .submitSignupId(); 
     	
-    	verify.testSignUpSuccess();
    }
-
-
-	
+    @Test
+	 public void testSignUpSuccess() throws MyNoSuchElementException, MyNullPointerException, MyIOException, MyFileNotFoundException{
+		
+		 driver=signupSuccess
+		 .successMessage();
+	 }
+	 
+	 @Test(dependsOnMethods={"testSignUpSuccess"})
+	 public void testSignUpFailure() throws MyNoSuchElementException, MyNullPointerException, MyIOException, MyFileNotFoundException{
+		 
+		 driver=loginPage
+		.signupClick()
+		.navigateSignupID()
+		.navigateSubmitSignupId()
+		.verifySignupFail();
+	 }
     
-    @AfterSuite(alwaysRun = true)
+     @AfterSuite(alwaysRun = true)
 	 public void endTest(){
-		wait.Wait();
-     	driver.close(); 
+		 wait.Wait();
+          	driver.close(); 
     }
 }
