@@ -87,6 +87,7 @@ public class VerifyPages implements VerifyPageInterface{
      @AfterSuite(alwaysRun = true)
 	 public void endTest(){
 		 wait.Wait();
-          	driver.close(); 
+          	driver.close();
+		 Reporter.log("Browser Closed");
     }
 }
