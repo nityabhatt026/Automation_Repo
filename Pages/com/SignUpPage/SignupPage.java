@@ -46,11 +46,11 @@ public class SignupPage {
 	    return new SignupPage(driver);
 	   
    }
-   public VerifyLinks submitSignupId() throws MyNoSuchElementException, MyFileNotFoundException{
+   public VerifySignupSuccess submitSignupId() throws MyNoSuchElementException, MyFileNotFoundException{
 	   signupButton=prop.getPropertyFile("Pages/com/SignUpPage/SignUp.properties", "signupButton");
 	   Reporter.log("Clicked on Signup",true);
 	   driver.findElement(By.cssSelector(signupButton)).click(); 
-	   return new VerifyLinks(driver);
+	   return new VerifySignupSuccess(driver);
    }
    
 public VerifySignupFailure navigateSubmitSignupId() throws MyNoSuchElementException, MyFileNotFoundException{
